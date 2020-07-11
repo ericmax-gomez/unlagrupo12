@@ -5,224 +5,6 @@
 
 
 
-/*  -----> OTROS EJEMPLOS
-
-
-
-
-//Implementacion o cuerpo de las funciones o procedimientos
-
-int elegirTamanio(){
-
-    int tam = 0;
-    printf("Ingrese el tamaño que quiere\n");
-    scanf("%d", &tam);
-
-
-    return tam;
-    }
-
-void cargarVectorAleatorio(int v[], int tam){
-
-    for ( int i = 0; i <tam; i++){
-        //-70 a 100      171 =  MAX - (-70) +1
-        v[i] = -70 + rand()%171;
-
-    }
-
-}
-
-
-void mostrarVector(int v[], int tam){
-
-    int i;
-    printf("\n\n---------------\n\n");
-    for (  i = 0; i <tam; i++){
-
-        printf(" %d ", v[i]);
-
-    }
-
-}
-
-
-int posMin(int v[], int tam){
-
-    int pos = 0;
-    int min = v[0];
-
-
-    for ( int i = 0; i<tam; i++){
-
-        if(v[i]<min){
-            min = v[i]; //<_------
-            pos = i;
-        }
-    }
-
-    return pos;
-}
-
-
-int minVector(int v[], int tam){
-
-
-    int min = v[  posMin(v,tam)  ];
-
-    return min;
-}
-
-
-void sumaVectores(int v[], int w[], int resultado[], int tam){
-
-
-    for ( int i = 0; i <tam; i++){
-
-        resultado[i]= v[i]+w[i];
-    }
-}
-
-
-
-
-
-
-
-
-
-
-//Implementaciones
-void ordenamientoBurbuja(int v[], int tam){
-
-    int aux;
-
-    for ( int i = 0; i<tam; i++){
-
-        for(int j =0; j<tam-1;j++){
-            if(v[j]>v[j+1]){
-                aux = v[j];
-                v[j]=v[j+1];
-                v[j+1]=aux;
-            }
-
-
-        }
-    }
-
-}
-
-
-
-void ordenamientoSeleccion(int v[], int tam){
-
-    int min, tmp;
-    for ( int i = 0; i<tam; i++ ){
-        min = i;
-        for(int j = i+1; j<tam; j++){
-
-            if(v[min]>v[j]){
-                min = j;
-            }//cierra el id
-
-        }//Cierra el for
-
-        tmp = v[min];
-        v[min]= v[i];
-        v[i]= tmp;
-    }//Cierra el for
-
-}
-
-
-void ordenamientoInsercion(int v[], int tam){
-
-         int i, j, temp;
-         for(i=0; i<tam; i++){
-            temp=v[i];
-            j=i-1;
-            while(j>=0 && v[j] >temp){
-                v[j+1] = v[j];
-                j--;
-            }
-
-            v[j+1] = temp;
-         }
-
-}
-
-
-
-
-
-int busquedaBinaria(int v[], int tam, int buscar){
-
-
-        int sup = 0 ;
-        int inf =0;
-        int centro = 0;
-        sup = tam -1;
-
-
-        while(inf<=sup){
-
-            centro = (sup + inf ) /2;
-            if(v[centro]==buscar){
-                return centro;
-            } else
-            { if(buscar<v[centro]){
-                inf = centro +1;
-            } else { sup = centro -1;
-        }}}
-
-
-    return -1;
-}
-
-
-
-
-
-int aleatorioEntre(int mini, int maxi){
-
-        //mini = 8, maxi = 20
-
-        int resultado = 0;
-
-
-        resultado  =  mini + rand()%(maxi - mini +1);
-
-
-        return resultado;
-
-}
-
-
-
-void cargarVectorConAleatorios(int v[], int tam, int mini,int maxi){
-
-
-    for ( int i = 0; i<tam; i++){
-
-        v[i]= aleatorioEntre(mini, maxi);
-    }
-
-
-
-}
-
-
-
-
-
-
-
-*/
-
-
-
-
-
-
 int busquedaSecuencial(int m[COLUMNA][RENGLON], int buscar){
 
     int pos = -1;
@@ -335,7 +117,6 @@ void rellenarPersonalizado (int carto[COLUMNA][RENGLON]){
 
 void  mostrarCarton(int cart[COLUMNA][RENGLON]){
 
-
     for ( int i =0; i<RENGLON; i++){
 
         for ( int j= 0; j<COLUMNA; j++ ){
@@ -345,11 +126,35 @@ void  mostrarCarton(int cart[COLUMNA][RENGLON]){
 
         printf("\n");
     }
+    printf("\n\n\n");
+
+}
+
+void  mostrarCartones(int cart1[COLUMNA][RENGLON],int cart2[COLUMNA][RENGLON],int cart3[COLUMNA][RENGLON],int ccar1[COLUMNA][RENGLON],int ccar2[COLUMNA][RENGLON],int ccar3[COLUMNA][RENGLON],int c){
+
+    //muestro el primer carton
+
+    mostrarCarton(cart1);
+    mostrarCarton(ccar1);
+
+    if(c>1){ //muestro el segundo si existe
+
+        mostrarCarton(cart2);
+        mostrarCarton(ccar2);
+
+    }
+
+    if(c>2){//muestro el tercero si existe
+
+        mostrarCarton(cart3);
+        mostrarCarton(ccar3);
+
+    }
 
 }
 
 
-void llenarCarton (int car[COLUMNA][RENGLON]){
+void llenarTipo (int car[COLUMNA][RENGLON]){
 
         int op=tipoDeCarton();
 
@@ -362,5 +167,30 @@ void llenarCarton (int car[COLUMNA][RENGLON]){
 
             rellenarPersonalizado(car);
        }
+
+}
+
+
+
+void llenarCarton (int car1[COLUMNA][RENGLON],int car2[COLUMNA][RENGLON],int car3[COLUMNA][RENGLON],int ccar1[COLUMNA][RENGLON],int ccar2[COLUMNA][RENGLON],int ccar3[COLUMNA][RENGLON],int c){
+
+    //lleno el primer carton
+
+    llenarTipo(car1);
+    rellenarAleatorio(ccar1);
+
+    if(c>1){ //lleno el segundo si existe
+
+        llenarTipo(car2);
+        rellenarAleatorio(ccar2);
+
+    }
+
+    if(c>2){//lleno el tercero si existe
+
+        llenarTipo(car3);
+        rellenarAleatorio(ccar3);
+
+    }
 
 }
