@@ -15,24 +15,19 @@ int main()
     srand(time(0));
 
     char nombre[10], apellido [10];
-    int dni, cant, carton[COLUMNA][RENGLON];
+
+    int dni, cant, carton1[COLUMNA][RENGLON],carton2[COLUMNA][RENGLON],carton3[COLUMNA][RENGLON];
+    int ccarton1[COLUMNA][RENGLON],ccarton2[COLUMNA][RENGLON],ccarton3[COLUMNA][RENGLON];
 
 
     cargarjugadores(nombre,apellido,dni);
 
-    llenarCarton (carton);
+    cant=cantidadCartones();
 
-    mostrarCarton(carton);
+    llenarCarton (carton1,carton2,carton3,ccarton1,ccarton2,ccarton3,cant);
+
+    mostrarCartones(carton1,carton2,carton3,ccarton1,ccarton2,ccarton3,cant);
 
     return 0;
+
 }
-
-
-
-
-
-
-
-
-
-
